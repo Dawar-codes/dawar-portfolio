@@ -38,7 +38,7 @@ const About = () => {
             <div className="absolute -inset-1.5 md:-inset-2 rounded-full bg-[#183D3D] blur-xl opacity-40 group-hover:opacity-70 transition-opacity duration-500"></div>
 
             <Image
-              src="/images/my-picture.jpg"
+              src="/images/my-dp.png"
               width={512}
               height={512}
               alt="Dawar"
