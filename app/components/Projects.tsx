@@ -28,9 +28,23 @@ const Projects = () => {
           gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
         }}
       >
-        {projectData.map((project, index) => (
-          <ProjectCard key={index} {...project} />
-        ))}
+        {projectData.map((project, index) => {
+          return (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{
+                duration: 0.4,
+                delay: index * 0.1,
+                ease: "easeOut",
+              }}
+            >
+              <ProjectCard {...project} />
+            </motion.div>
+          );
+        })}
       </div>
     </section>
   );

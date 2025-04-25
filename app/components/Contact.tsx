@@ -6,13 +6,12 @@ import emailjs from '@emailjs/browser';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import Button from './ui/Button';
 import ParticlesClient from './ui/ParticlesClient';
+import SubmitButton from './SubmitButton';
 
 type FormState = {
   errors: string[] | null;
 };
-
 
 const Contact = () => {
   const formRef = useRef<HTMLFormElement>(null);
@@ -23,7 +22,6 @@ const Contact = () => {
     const message = formData.get('message')?.toString() || '';
 
     const errors: string[] = [];
-
     if (!name.trim()) errors.push('Name is required.');
     if (!email.trim()) errors.push('Email is required.');
     if (!message.trim()) errors.push('Message is required.');
@@ -32,21 +30,16 @@ const Contact = () => {
       return { ...prevState, errors };
     }
 
-    // Send email using EmailJS
     try {
       await emailjs.send(
         process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
         process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
-        {
-          name,
-          email,
-          message,
-        },
+        { name, email, message },
         process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
       );
 
       toast.success('Your message was sent successfully!');
-      formRef.current?.reset(); // clear the form
+      formRef.current?.reset();
     } catch (err) {
       console.error(err);
       toast.error('Failed to send message. Please try again.');
@@ -61,7 +54,6 @@ const Contact = () => {
 
   return (
     <section id="contact" className="relative py-20 px-4 bg-[#040D12] text-white">
-      {/* 👇 Particles */}
       <div className="absolute inset-0 z-0">
         <ParticlesClient />
       </div>
@@ -103,7 +95,7 @@ const Contact = () => {
             />
           </div>
 
-          <Button title="Send a message" />
+          <SubmitButton />
 
           {formState.errors && (
             <ul className="text-red-500 text-sm mt-4 space-y-1">
@@ -115,7 +107,6 @@ const Contact = () => {
         </form>
       </div>
 
-      {/* Toast Container */}
       <ToastContainer position="bottom-right" autoClose={3000} />
     </section>
   );

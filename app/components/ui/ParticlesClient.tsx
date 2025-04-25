@@ -1,4 +1,5 @@
 'use client';
+import React from 'react';
 
 import { useEffect, useState } from 'react';
 import type { Engine } from '@tsparticles/engine';
@@ -81,4 +82,4 @@ const ParticlesClient = () => {
   );
 };
 
-export default ParticlesClient;
+export default React.memo(ParticlesClient);

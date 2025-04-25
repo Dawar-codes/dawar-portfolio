@@ -49,9 +49,14 @@ const About = () => {
           {/* About Text - Adjusted padding and font sizes */}
           <div className="relative bg-[#183D3D]/30 backdrop-blur-lg border border-[#5C8374]/30 rounded-2xl md:rounded-3xl p-4 md:p-6 lg:p-8 shadow-xl md:shadow-2xl">
             <div className="space-y-3 md:space-y-4 text-base md:text-lg text-text">
-              <TypingText smooth delay={25} repeat={false} text="I&apos;m a full-stack developer who thrives on building practical,
+              <TypingText
+                smooth
+                alwaysVisibleCount={0}
+                delay={25}
+                repeat={false}
+                text="I'm a full-stack developer who thrives on building practical,
                 powerful web applications. JavaScript and TypeScript are at the
-                core of what I do—whether I&apos;m working with React, Next.js, or
+                core of what I do—whether I'm working with React, Next.js, or
                 Node.js, I make sure everything functions smoothly and
                 efficiently.
                 I enjoy the process of transforming ideas into
@@ -59,12 +64,11 @@ const About = () => {
                 developing robust back-end services. Every project is an
                 opportunity to learn something new, and I approach each
                 challenge with curiosity and precision.
-                When I&apos;m not coding, I&apos;m focused on improving my craft and diving deeper into the
-                technologies I use every day. Let&apos;s make something great
-                together!" />
-              <p>
-                
-              </p>
+                When I'm not coding, I'm focused on improving my craft and diving deeper into the
+                technologies I use every day. Let's make something great
+                together!"
+              />
+              <p></p>
             </div>
           </div>
         </div>
