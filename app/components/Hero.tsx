@@ -12,11 +12,11 @@ const words = "In the space between logic and light, I build.";
 const Hero = () => {
   return (
     <>
-      <div className="min-h-screen flex flex-col items-start justify-center px-4 overflow-hidden relative">
+      <div className="min-h-screen flex flex-col items-center sm:items-start justify-center px-4 overflow-hidden relative">
 
         <TextGenerateEffect
           words={words}
-          className="text-4xl md:text-6xl font-bold text-text"
+          className="text-4xl md:text-6xl text-center sm:text-start font-bold text-text"
           filter={true}
           duration={0.5}
         />

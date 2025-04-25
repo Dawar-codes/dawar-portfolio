@@ -66,7 +66,7 @@ const Contact = () => {
         <ParticlesClient />
       </div>
 
-      <div className="w-full max-w-3xl rounded-3xl p-8 md:p-12 relative z-10">
+      <div className="w-full max-w-2xl rounded-3xl md:p-8 relative z-10">
         <h2 className="text-3xl md:text-4xl font-bold text-white mb-8 text-left">
           Let&apos;s <span className="text-accent">Connect.</span>
         </h2>
