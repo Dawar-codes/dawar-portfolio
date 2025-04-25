@@ -7,6 +7,7 @@ import { loadFull } from "tsparticles";
 import { useMemo } from 'react';
 
 const ParticlesClient = () => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [ init, setInit ] = useState(false);
 
     useEffect(() => {
@@ -39,7 +40,7 @@ const ParticlesClient = () => {
       move: {
         enable: true,
         speed: 1,
-        outModes: { default: "bounce" },
+        outModes: "bounce"
       },
       number: {
         value: 50,
@@ -72,8 +73,9 @@ const ParticlesClient = () => {
   return (
     <Particles
       id="tsparticles"
-      init={init}
-      options={options}
+      // init={init as any}
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      options={options as any}
       className="absolute inset-0 -z-10"
     />
   );
