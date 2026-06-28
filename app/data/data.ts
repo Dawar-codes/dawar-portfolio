@@ -42,18 +42,26 @@ export const techStack = [
 
 export const experiences = [
   {
+    title: "Full Stack AI Engineer",
+    company: "Emergi Mentors PTY LTD",
+    duration: "May 2026 - Present",
+    responsibilities: [
+      "Own end-to-end delivery of AI-driven products, driving architecture decisions, development, and deployment independently across the full stack.",
+      "Rebuilt the internal Admin Panel from a legacy PHP/Blade system to Next.js, delivering a significantly faster, modern UI with smooth animations, integrating a Video Factory, YouTube content generation pipeline, and automated long-video-to-Shorts repurposing system.",
+      "Built and maintained an AI-powered email automation workflow covering lead generation, personalized outreach, auto follow-ups, and human-in-the-loop replies using n8n, Gemini AI, and Google Sheets, reducing manual outreach by 70%.",
+      "Built a RAG-based chatbot using n8n, Pinecone vector storage, and Gemini API for embeddings and responses, replacing the existing third-party system and improving retrieval accuracy by 40%.",
+      "Independently evaluated and proposed technical stack and architecture decisions, contributing directly to engineering direction alongside the lead engineer.",
+    ],
+  },
+  {
     title: "Graduate Full Stack AI Engineer",
     company: "Emergi Mentors PTY LTD",
-    duration: "May 2025 - Present",
+    duration: "May 2025 - May 2026",
     responsibilities: [
-      "Develop and maintain core frontend features of the website using Next.js and React.js, ensuring high performance, responsive UI, and timely bug fixes to enhance user experience.",
-      "Work on Figma to design and adjust UI pages, contributing to better alignment between design and development.",
-      "Build and maintain an AI-powered email automation workflow (lead generation, personalized emails, auto follow-ups, human-in-the-loop replies) using n8n, Gemini AI, and Google Sheets, reducing manual outreach by 70%.",
-      "Built a RAG-based chatbot using n8n, Pinecone vector storage, and Gemini API for embeddings and responses, replacing the previous third-party system and improving retrieval accuracy by 40%.",
-      "Built the company’s Resume Analyzer tool using Next.js, which increased website engagement by almost 80% and became the highest-traffic page, contributing significantly to lead generation.",
-      "Design and implement a QA automation suite using Playwright (Python + Pytest) for end-to-end testing of booking, payment, and communication flows, reducing regression testing time by 60%.",
-      "Built the Career Roadmaps platform in Next.js, integrating with backend APIs to deliver structured roadmaps with real-time progress tracking across multiple career fields.",
-      "Manage Git-based workflows and collaborate through GitHub/Bitbucket, ensuring clean version control, smooth deployments, and maintainable codebases.",
+      "Developed and maintained core frontend features using Next.js and React.js, delivering high-performance, responsive UI with consistent bug fixes across the platform.",
+      "Built the company's Resume Analyzer tool in Next.js, which became the highest-traffic page on the website, increasing overall engagement by 80% and contributing significantly to lead generation.",
+      "Designed and implemented a QA automation suite using Playwright with Python and Pytest for end-to-end testing of booking, payment, and communication flows, reducing regression testing time by 60%.",
+      "Built the Career Roadmaps platform in Next.js, integrating backend APIs to deliver structured roadmaps with real-time progress tracking across multiple career fields.",
     ],
   },
 ];
