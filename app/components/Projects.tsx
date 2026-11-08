@@ -1,18 +1,22 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { useRef, useState } from "react";
+import { AnimatePresence, motion, useInView } from "framer-motion";
 
 import ProjectCard from "./ui/ProjectCard";
-import { projectData } from "../data/data";
+import { projectData, projectFilters, type ProjectCategory } from "../data/data";
 
 const Projects = () => {
   const hrRef = useRef(null);
   const isInView = useInView(hrRef, { once: true });
+  const [filter, setFilter] = useState<"all" | ProjectCategory>("all");
+
+  const visible =
+    filter === "all" ? projectData : projectData.filter((p) => p.category === filter);
 
   return (
     <section id="projects" className="py-12 md:py-20 px-4 sm:px-6 lg:px-4">
-      <h2 className="text-3xl md:text-4xl font-bold mb-10 md:mb-20 text-accent">
+      <h2 className="text-3xl md:text-4xl font-bold mb-10 md:mb-14 text-accent">
         Projects.
         <motion.hr
           ref={hrRef}
@@ -22,30 +26,57 @@ const Projects = () => {
           transition={{ duration: 0.9, ease: "easeInOut" }}
         />
       </h2>
-      <div
-        className="grid justify-center gap-6 max-w-6xl mx-auto"
-        style={{
-          gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
-        }}
-      >
-        {projectData.map((project, index) => {
+
+      {/* Filter tabs */}
+      <div className="flex flex-wrap justify-center gap-2 mb-10 md:mb-14">
+        {projectFilters.map(({ key, label }) => {
+          const active = filter === key;
           return (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{
-                duration: 0.4,
-                delay: index * 0.1,
-                ease: "easeOut",
-              }}
+            <button
+              key={key}
+              type="button"
+              onClick={() => setFilter(key)}
+              className={`relative rounded-full px-4 py-1.5 text-sm md:text-base transition-colors cursor-pointer border ${
+                active
+                  ? "text-white border-accent"
+                  : "text-text border-[#5C8374]/30 hover:text-white hover:border-[#5C8374]/60"
+              }`}
             >
-              <ProjectCard {...project} />
-            </motion.div>
+              {active && (
+                <motion.span
+                  layoutId="project-filter-pill"
+                  className="absolute inset-0 rounded-full bg-surface/70"
+                  transition={{ type: "spring", stiffness: 400, damping: 32 }}
+                />
+              )}
+              <span className="relative z-10">{label}</span>
+            </button>
           );
         })}
       </div>
+
+      <motion.div
+        layout
+        className="grid justify-center gap-6 max-w-6xl mx-auto"
+        style={{
+          gridTemplateColumns: "repeat(auto-fill, minmax(min(320px, 100%), 1fr))",
+        }}
+      >
+        <AnimatePresence mode="popLayout">
+          {visible.map((project, index) => (
+            <motion.div
+              key={project.title}
+              layout
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={{ duration: 0.4, delay: index * 0.08, ease: "easeOut" }}
+            >
+              <ProjectCard {...project} />
+            </motion.div>
+          ))}
+        </AnimatePresence>
+      </motion.div>
     </section>
   );
 };

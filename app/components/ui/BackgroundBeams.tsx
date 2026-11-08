@@ -1,10 +1,25 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
 
 export const BackgroundBeams = React.memo(
   ({ className }: { className?: string }) => {
+    // Random timing per beam, generated once so re-renders don't reset it.
+    // A negative delay starts each beam partway through its sweep, so the
+    // beams are already spread across the screen on the very first frame
+    // instead of waiting up to 10s (plus a slow ease-in) to appear.
+    const [timings] = useState(() =>
+      Array.from({ length: 50 }, () => {
+        const duration = Math.random() * 10 + 10;
+        return {
+          duration,
+          delay: -Math.random() * duration,
+          y2: `${93 + Math.random() * 8}%`,
+        };
+      }),
+    );
+
     const paths = [
       "M-380 -189C-380 -189 -312 216 152 343C616 470 684 875 684 875",
       "M-373 -197C-373 -197 -305 208 159 335C623 462 691 867 691 867",
@@ -104,13 +119,13 @@ export const BackgroundBeams = React.memo(
                   x1: ["0%", "100%"],
                   x2: ["0%", "95%"],
                   y1: ["0%", "100%"],
-                  y2: ["0%", `${93 + Math.random() * 8}%`],
+                  y2: ["0%", timings[index].y2],
                 }}
                 transition={{
-                  duration: Math.random() * 10 + 10,
+                  duration: timings[index].duration,
                   ease: "easeInOut",
                   repeat: Infinity,
-                  delay: Math.random() * 10,
+                  delay: timings[index].delay,
                 }}
               >
                 <stop stopColor="#18CCFC" stopOpacity="0"></stop>

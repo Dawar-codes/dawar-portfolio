@@ -14,7 +14,7 @@ const Footer = () => {
             Muhammad Dawar
           </h3>
           <p className="text-lg opacity-50 mt-4">
-            Full-stack Web Developer | React, TypeScript, Next.js, Node.js
+            Full Stack AI Engineer | Next.js, React, Node.js, n8n
           </p>
         </div>
 

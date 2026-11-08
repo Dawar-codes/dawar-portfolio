@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 
-import { techStack } from "../data/data";
+import { skillGroups, stats } from "../data/data";
 
 import { motion } from "framer-motion";
 import TypingText from "./ui/TypingText";
@@ -27,7 +27,6 @@ const About = () => {
       <div className="max-w-6xl mx-auto py-6 md:py-10 flex flex-col gap-8 md:gap-12">
         {/* Avatar & Text Container */}
         <div className="flex flex-col lg:flex-row items-center gap-6 md:gap-8 lg:gap-12">
-          {/* Avatar - Reduced size on mobile */}
           <motion.div
             initial={{ x: -100, opacity: 0 }}
             whileInView={{ x: 0, opacity: 1 }}
@@ -46,7 +45,6 @@ const About = () => {
             />
           </motion.div>
 
-          {/* About Text - Adjusted padding and font sizes */}
           <div className="relative bg-[#183D3D]/30 backdrop-blur-lg border border-[#5C8374]/30 rounded-2xl md:rounded-3xl p-4 md:p-6 lg:p-8 shadow-xl md:shadow-2xl">
             <div className="space-y-3 md:space-y-4 text-base md:text-lg text-text">
               <TypingText
@@ -54,53 +52,66 @@ const About = () => {
                 alwaysVisibleCount={0}
                 delay={25}
                 repeat={false}
-                text="I'm a full-stack developer who thrives on building practical,
-                powerful web applications. JavaScript and TypeScript are at the
-                core of what I do—whether I'm working with React, Next.js, or
-                Node.js, I make sure everything functions smoothly and
-                efficiently.
-                I enjoy the process of transforming ideas into
-                working products, from crafting clean front-end interfaces to
-                developing robust back-end services. Every project is an
-                opportunity to learn something new, and I approach each
-                challenge with curiosity and precision.
-                When I'm not coding, I'm focused on improving my craft and diving deeper into the
-                technologies I use every day. Let's make something great
-                together!"
+                text="I'm a Full Stack AI Engineer at Emergi Mentors, where I build fast, modern web apps with Next.js, React and Node.js and connect them to AI. I've shipped an AI Resume Analyzer that became the company's highest-traffic page, rebuilt a legacy PHP admin panel in Next.js, and built n8n workflows that automate lead generation, personalized outreach and a RAG-powered chatbot. I also make sure things don't break, with end-to-end test suites in Playwright and Pytest. I care about clean, scalable code and turning ideas into products people actually use. Let's build something great together!"
               />
-              <p></p>
             </div>
           </div>
         </div>
 
-        {/* Tech Stack - Adjusted grid and spacing */}
-        <div className="mt-6 md:mt-8 bg-[#183D3D]/30 backdrop-blur-lg border border-[#5C8374]/30 rounded-2xl md:rounded-3xl p-4 md:p-6 lg:p-8 shadow-xl md:shadow-2xl">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 md:mb-8 text-accent">
-            Tech Stack
-          </h2>
-          <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 gap-3 md:gap-4">
-            {techStack.map((tech, index) => {
-              const Icon = tech.icon;
+        {/* Impact stats */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+          {stats.map((stat, index) => (
+            <motion.div
+              key={stat.label}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: index * 0.1, ease: "easeOut" }}
+              className="bg-[#183D3D]/30 backdrop-blur-lg border border-[#5C8374]/30 rounded-2xl p-4 md:p-5 text-center hover:border-[#5C8374]/60 transition-colors"
+            >
+              <div className="text-2xl md:text-4xl font-bold bg-gradient-to-r from-[#7fb8a5] to-emerald-200 bg-clip-text text-transparent">
+                {stat.value}
+              </div>
+              <div className="mt-1 text-xs md:text-sm text-text">{stat.label}</div>
+            </motion.div>
+          ))}
+        </div>
 
+        {/* Skills */}
+        <div className="bg-[#183D3D]/30 backdrop-blur-lg border border-[#5C8374]/30 rounded-2xl md:rounded-3xl p-4 md:p-6 lg:p-8 shadow-xl md:shadow-2xl">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 md:mb-8 text-accent">
+            Skills
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
+            {skillGroups.map((group, index) => {
+              const GroupIcon = group.icon;
               return (
                 <motion.div
-                  key={tech.name}
-                  className="group relative flex flex-col items-center"
+                  key={group.title}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{
-                    duration: 0.4,
-                    delay: index * 0.1,
-                    ease: "easeOut",
-                  }}
+                  transition={{ duration: 0.4, delay: index * 0.08, ease: "easeOut" }}
+                  className="rounded-xl md:rounded-2xl bg-[#183D3D]/40 border border-[#5C8374]/30 p-4 md:p-5 hover:border-[#5C8374]/60 hover:bg-[#183D3D]/60 transition-colors"
                 >
-                  <div className="w-12 h-12 md:w-16 md:h-16 flex items-center justify-center rounded-xl md:rounded-2xl bg-[#183D3D]/50 border border-[#5C8374]/30 shadow-md md:shadow-lg transition-all duration-300 group-hover:bg-[#5C8374]/20 group-hover:scale-110">
-                    <Icon className={`text-2xl md:text-3xl ${tech.color}`} />
+                  <h3 className="flex items-center gap-2 text-lg md:text-xl font-semibold text-white mb-3 md:mb-4">
+                    <GroupIcon className="text-accent text-xl md:text-2xl" />
+                    {group.title}
+                  </h3>
+                  <div className="flex flex-wrap gap-2">
+                    {group.skills.map((skill) => {
+                      const Icon = skill.icon;
+                      return (
+                        <span
+                          key={skill.name}
+                          className="flex items-center gap-1.5 rounded-lg bg-bg/60 border border-[#5C8374]/25 px-2.5 py-1 text-xs md:text-sm text-text hover:text-white hover:scale-105 transition"
+                        >
+                          {Icon && <Icon className={skill.color} />}
+                          {skill.name}
+                        </span>
+                      );
+                    })}
                   </div>
-                  <span className="mt-1 md:mt-2 text-xs md:text-sm text-text opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute -bottom-5 md:-bottom-6">
-                    {tech.name}
-                  </span>
                 </motion.div>
               );
             })}
